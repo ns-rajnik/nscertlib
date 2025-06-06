@@ -1,0 +1,9 @@
+#!/bin/bash
+source @ABS_BUILD_DIR@/libs/nscertlib/tests/nscertlib_ci_smoke/wrappers/smoke_util.sh
+
+if [[ "@RUN_CERTLIB_TEST@" = "no" ]]; then
+    echo "nscertlib tests disabled for this build"
+	exit 0
+fi
+
+OS_VERSION=$(os_version) @PYTHON_PREFIX@/bin/python3 -m tox -vv -c certlib/tox.ini /test_nscertlib_hsm.py

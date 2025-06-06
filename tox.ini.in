@@ -1,0 +1,24 @@
+# tox.ini.
+# We use this for tox and pytest configuration. This file is used in
+# conjunction with the make test target.
+
+
+[testenv]
+passenv = *
+install_command =
+    pip install \
+    --no-clean \
+    --find-links file://@ABS_BUILD_DIR@/pkg \
+    {opts} {packages}
+
+deps =
+    pytest==6.2.4
+    pytest-forked==1.6.0
+    coverage==7.3
+    cryptography==41.0.7
+    pyOpenSSL==23.3.0
+    nscertlib-{env:OS_VERSION}
+
+commands =
+    pytest --durations=0 -srA -vv @ABS_BUILD_DIR@/libs/nscertlib/tests{posargs}
+

@@ -1,0 +1,3 @@
+include src/nscertlib/fips/*
+include src/nscertlib/non_fips/*
+include src/_version.py

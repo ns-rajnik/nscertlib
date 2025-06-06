@@ -1,0 +1,15 @@
+{
+    "certificates": {
+            "db-dir": "./",
+            "cert-wrap-key-name": "Cert_Wrap"
+        },
+    "HSM": {
+            "type": "NAE",
+            "properties-file": "sample_safenet.properties",
+            "user": "cert",
+            "password": "netskope",
+            "nae-key-size": 1024
+        },
+    "engine-path": "/opt/3p/lib/libgem.so"
+}
+

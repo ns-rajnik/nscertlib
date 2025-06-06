@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -e
+
+source @ABS_BUILD_DIR@/libs/nscertlib/tests/nscertlib_ci_smoke/wrappers/smoke_util.sh
+
+if [[ "@RUN_CERTLIB_TEST@" = "no" ]]; then
+    echo "nscertlib tests disabled for this build"
+    exit 0
+fi
+
+#create virtual environment
+mkdir -p certlib/tests
+cp -f libs/nscertlib/tox.ini certlib/
+cp -r @SOURCE_DIRECTORY@/libs/nscertlib/tests/* libs/nscertlib/tests/
+
+echo OSVERSION = $(os_version) 
+@PYTHON_PREFIX@/bin/python3 -m pip install tox==3.6.1 --user
+OS_VERSION=$(os_version) @PYTHON_PREFIX@/bin/python3 -m tox -c certlib/tox.ini -vvv --notest
+
+

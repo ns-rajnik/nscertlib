@@ -1,0 +1,13 @@
+{
+    "certificates": {
+            "db-dir": "./",
+            "cert-wrap-key-name": "Cert_Wrap"
+        },
+    "HSM": {
+            "type": "Softoken",
+            "properties-file": "sample_safenet.properties",
+            "user": "cert",
+            "password": "netskope"
+        },
+    "engine-path": "/opt/3p/lib/libgem.so"
+}

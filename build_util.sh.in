@@ -1,0 +1,25 @@
+#!/bin/bash
+
+DEST=$1
+SOURCE_LIB=$2
+ICAPI_PATH=$3
+libs=$(ldd $SOURCE_LIB  | awk '{print $3}')
+
+DIR="/opt"
+DIR_REGEX="^${DIR}.*"
+
+for lib in $libs; do
+        if  [[ "$lib" =~ $DIR_REGEX ]]; then
+                if test -f $lib; then
+                        cp -vL $lib $DEST/
+                fi
+        fi
+done
+
+#path to libICAPI.so is not present in ldd output
+if test -f $ICAPI_PATH; then
+        cp -vL $ICAPI_PATH $DEST/
+else
+        echo "failed to find $ICAPI_PATH"
+        exit 1
+fi

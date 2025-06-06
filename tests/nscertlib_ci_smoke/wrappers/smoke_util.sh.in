@@ -1,0 +1,5 @@
+#!/bin/bash
+
+os_version(){
+    echo $(cat /etc/os-release | grep UBUNTU_CODENAME | sed 's/UBUNTU_CODENAME=//g')
+}
